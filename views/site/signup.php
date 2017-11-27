@@ -27,6 +27,8 @@ $this->title = Yii::t('app', 'Zarejestruj się');
         <?=$form->field($model, 'password')->passwordInput();?>
         <?=$form->field($model, 'password_repeat')->passwordInput();?>
         <?= Html::submitButton(Yii::t('app', 'Zarejestruj się'), ['class' => 'btn btn-primary btn-block', 'name' => 'signup']) ?>
+        <br>
+        <span class="pull-left"><?= Html::a(Yii::t('app', 'Masz już konto? Zaloguj się!'), ['site/login']) ?></span>
         <?php $form::end()?>
     </div>
 </div>

@@ -28,7 +28,7 @@ class SignupForm extends Model
     {
         return  [
             ['email', 'trim'],
-            ['email', 'required', 'message' => Yii::t('app', 'form.cannot_be_blank_email')],
+            ['email', 'required', 'message' => Yii::t('app', 'Mail nie może pozostac pusty.')],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => 'app\models\Parents', 'targetAttribute' => 'EmailAddress', 'message' => Yii::t('app', 'Email jest już zajęty.')],
@@ -41,6 +41,18 @@ class SignupForm extends Model
             [['firstname', 'lastname', 'password'], 'string', 'max' => 50],
             [['phone_number'], 'string', 'max' => 12],
 
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('app', 'Email'),
+            'firstname' => Yii::t('app', 'Imię'),
+            'lastname' => Yii::t('app', 'Nazwisko'),
+            'phone_number' => Yii::t('app', 'Telefon'),
+            'password' => Yii::t('app', 'Hasło'),
+            'password_repeat' => Yii::t('app', 'Powtórz hasło'),
         ];
     }
 
