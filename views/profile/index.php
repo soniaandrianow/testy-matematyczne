@@ -24,8 +24,8 @@ $this->title = Yii::t('app', 'Profil');
             ]
         ]) ?>
         <div class="row" style="width:100%; margin: 0px;">
-            <?= \yii\helpers\Html::a(Yii::t('app', 'Edytuj dane'), Url::to(['profile/edit', 'id' => $model->ParentId]), ['class' => 'btn btn-primary pull-left']); ?>
-            <?= \yii\helpers\Html::a(Yii::t('app', 'Zmień hasło'), Url::to(['profile/change-password', 'id' => $model->ParentId]), ['class' => 'btn btn-primary pull-right ']); ?>
+            <?= \yii\helpers\Html::a(Yii::t('app', 'Edytuj dane'), Url::to(['profile/update']), ['class' => 'btn btn-primary pull-left']); ?>
+            <?= \yii\helpers\Html::a(Yii::t('app', 'Zmień hasło'), Url::to(['profile/change-password']), ['class' => 'btn btn-primary pull-right ']); ?>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@ $this->title = Yii::t('app', 'Profil');
     </div>
     <div class="panel-body">
         <div class="row" style="width:100%; margin-bottom: 10px">
-            <?= \yii\helpers\Html::a(Yii::t('app', 'Dodaj dziecko'), Url::to(['children/add', 'id' => $model->ParentId]), ['class' => 'btn btn-primary pull-right']); ?>
+            <?= \yii\helpers\Html::a(Yii::t('app', 'Dodaj dziecko'), Url::to(['children/add']), ['class' => 'btn btn-primary pull-right']); ?>
         </div>
         <div>
             <?= \yii\grid\GridView::widget([
@@ -49,7 +49,7 @@ $this->title = Yii::t('app', 'Profil');
                     [
                         'label' => Yii::t('app', 'Wiek'),
                         'value' => function ($data) {
-                            return date('Y', strtotime('now')) - date('Y', $data->DateOfBirth);
+                            return date('Y', strtotime('now')) - date('Y', strtotime($data->DateOfBirth));
                         }
                     ],
                     ['class' => 'yii\grid\ActionColumn'],

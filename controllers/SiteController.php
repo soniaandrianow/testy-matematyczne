@@ -2,13 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\forms\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\components\Controller;
 
 class SiteController extends Controller
 {
@@ -122,5 +123,19 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionSignup()
+    {
+        $model = new SignupForm;
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->signup()) {
+                $this->ok(Yii::t('app', 'Konto zostało dodane. Możesz się zalogować.'));
+                return $this->goHome();
+            } else {
+                $this->err(Yii::t('app', 'Wystąpił niespodziewany błąd podczas rejestracji. Spróbuj ponownie późneij.'));
+            }
+        }
+        return $this->render('signup', ['model' => $model]);
     }
 }

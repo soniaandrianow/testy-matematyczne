@@ -8,6 +8,8 @@
 
 namespace app\components;
 
+use Yii;
+
 trait FlashTrait
 {
     /**

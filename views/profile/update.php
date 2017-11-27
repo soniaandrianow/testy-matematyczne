@@ -1,9 +1,26 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<h1>profile/update</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+$this->title = Yii::t('app', 'Aktualizuj profilu');
+?>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <p><?=Yii::t('app', 'Aktualizuj profil')?></p>
+        </div>
+    </div>
+    <div class="panel-body">
+        <?php $form = ActiveForm::begin([])?>
+        <?=$form->field($model, 'FirstName')->textInput();?>
+        <?=$form->field($model, 'LastName')->textInput();?>
+        <?=$form->field($model, 'PhoneNumber')->textInput();?>
+        <?=$form->field($model, 'EmailAddress')->textInput();?>
+        <?= Html::submitButton(Yii::t('app', 'Zapisz'), ['class' => 'btn btn-primary btn-block', 'name' => 'add-kid']) ?>
+        <?php $form::end()?>
+    </div>
+</div>

@@ -32,7 +32,7 @@ class Children extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['FirstName', 'LastName', 'ParentId'], 'required'],
+            [['FirstName', 'LastName', 'ParentId', 'DateOfBirth'], 'required'],
             [['DateOfBirth'], 'safe'],
             [['ParentId'], 'integer'],
             [['FirstName', 'LastName'], 'string', 'max' => 50],
@@ -78,7 +78,7 @@ class Children extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
-        $this->DateOfBirth = date('Y-m-d H:i:s', $this->DateOfBirth);
+        $this->DateOfBirth = $this->DateOfBirth . ' ' . '00:00';
         return parent::beforeSave($insert);
     }
 }
