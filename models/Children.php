@@ -81,4 +81,5 @@ class Children extends \yii\db\ActiveRecord
         $this->DateOfBirth = $this->DateOfBirth . ' ' . '00:00';
         return parent::beforeSave($insert);
     }
+
 }

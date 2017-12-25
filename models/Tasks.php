@@ -105,4 +105,9 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Difficulties::className(), ['DifficultyId' => 'DifficultyId']);
     }
+
+    public function getCorrect()
+    {
+        return TaskAnswers::find()->where(['TaskId' => $this->TaskId])->andWhere(['IsCorrect' => 1])->one()->AnswerId;
+    }
 }

@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Categories;
+use app\models\Children;
 use app\models\forms\SignupForm;
+use app\models\Tasks;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -10,6 +13,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\components\Controller;
+use app\models\Difficulties;
+use yii\helpers\ArrayHelper;
 
 class SiteController extends Controller
 {
@@ -62,7 +67,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $difficulties = Difficulties::find()->all();
+//        $id = 1;
+//        $tasks = array_column(Tasks::find()->where(['DifficultyId' => $id])->select('TaskId')->asArray()->all(), 'TaskId');
+//        var_dump($tasks); die;
+//        $categories = Categories::find()->where(['CategoryId' => $tasks])->all();
+//        var_dump($categories); die;
+//        $kids = ArrayHelper::map(Children::find()->where(['ParentId' => Yii::$app->user->id])->all(), 'ChildId', 'FirstName');
+//        var_dump($kids);
+//        die;
+
+        return $this->render('index', [
+            'difficulties' => $difficulties,
+        ]);
     }
 
     /**

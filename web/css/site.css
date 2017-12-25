@@ -132,3 +132,40 @@ a.desc:after {
 .btn-link:hover {
     color: #000;
 }
+
+hr {
+    margin-top: 0px;
+}
+
+#panel-question {
+    font-size: 190%;
+}
+
+.answer {
+    font-size: 90%;
+}
+
+#your-answers {
+    font-size: 150%;
+}
+
+.result-success {
+    font-size: 150%;
+    color: green;
+
+}
+
+.result-failure {
+    font-size:150%;
+    color: red;
+}
+
+.image-success {
+    color: gold;
+    font-size: 300%;
+}
+
+.image-failure {
+    color: darkblue;
+    font-size: 300%;
+}

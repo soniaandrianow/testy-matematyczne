@@ -10,6 +10,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -62,7 +63,7 @@ AppAsset::register($this);
         <div class="container">
             <div class="navbar-header">
                 <div class="navbar-header">
-                    <a class="navbar-brand navbar-right" href="#"><?=Yii::$app->name?></a>
+                    <a class="navbar-brand navbar-right" href="<?=Url::to(['site/index'])?>"><?=Yii::$app->name?></a>
                 </div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#zsxnavcollapse">
                     <span class="sr-only">Toggle navigation</span>
