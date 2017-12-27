@@ -69,4 +69,15 @@ class Answers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tasks::className(), ['TaskId' => 'TaskId'])->viaTable('{{%taskanswers}}', ['AnswerId' => 'AnswerId']);
     }
+
+    public function isCorrect()
+    {
+        $taskans = TaskAnswers::find()->where(['AnswerId' => $this->AnswerId])->one();
+        return $taskans->IsCorrect;
+    }
+
+    public function isChosen()
+    {
+
+    }
 }

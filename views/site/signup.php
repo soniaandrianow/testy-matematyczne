@@ -15,7 +15,7 @@ $this->title = Yii::t('app', 'Zarejestruj się');
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="panel-title">
-            <p><?=Yii::t('app', 'Zarejestruj się')?></p>
+            <h3><?=Yii::t('app', 'Zarejestruj się')?></h3>
         </div>
     </div>
     <div class="panel-body">

@@ -15,6 +15,9 @@ use Yii;
  * @property Solutions[] $solutions
  * @property Tasks[] $tasks
  * @property Children $child
+ * @property Integer DifficultyId
+ * @property Integer CategoryId
+ * @property String CategoryMainName
  */
 class Tests extends \yii\db\ActiveRecord
 {
@@ -33,8 +36,8 @@ class Tests extends \yii\db\ActiveRecord
     {
         return [
             [['MaximumPoints', 'GeneratedDate', 'ChildId'], 'required'],
-            [['MaximumPoints', 'ChildId'], 'integer'],
-            [['GeneratedDate'], 'safe'],
+            [['MaximumPoints', 'ChildId', 'DifficultyId', 'CategoryId'], 'integer'],
+            [['GeneratedDate', 'CategoryMainName'], 'safe'],
             [['ChildId'], 'exist', 'skipOnError' => true, 'targetClass' => Children::className(), 'targetAttribute' => ['ChildId' => 'ChildId']],
         ];
     }
@@ -49,6 +52,8 @@ class Tests extends \yii\db\ActiveRecord
             'MaximumPoints' => Yii::t('app', 'Maximum Points'),
             'GeneratedDate' => Yii::t('app', 'Generated Date'),
             'ChildId' => Yii::t('app', 'Child ID'),
+            'CategoryId' => Yii::t('app', 'Category ID'),
+            'DifficultyId' => Yii::t('app', 'Difficulty ID'),
         ];
     }
 
@@ -75,4 +80,22 @@ class Tests extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Children::className(), ['ChildId' => 'ChildId']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::className(), ['CategoryId' => 'CategoryId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDifficulty()
+    {
+        return $this->hasOne(Difficulties::className(), ['DifficultyId' => 'DifficultyId']);
+    }
+
+
 }

@@ -102,6 +102,9 @@ class TestsController extends Controller
                 $test->MaximumPoints = $points;
                 $test->GeneratedDate = date('Y-m-d H:i:s', strtotime("now"));
                 $test->ChildId = $testForm->child;
+                $test->CategoryId = $category_id;
+                $test->DifficultyId = $difficulty_id;
+                $test->CategoryMainName = $category->MainCategory;
                 if($test->validate() && $test->save()) {
                     Yii::$app->session['testForm'] = $testForm;
                     Yii::$app->session['test'] = $test;
@@ -229,6 +232,7 @@ class TestsController extends Controller
                     $all_points += $t->NumberOfPoints;
                 }
                 $testForm = Yii::$app->session->get('testForm');
+                $test = Yii::$app->session->get('test');
                 Yii::$app->session->remove('your_answers');
                 Yii::$app->session->remove('testForm');
                 Yii::$app->session->remove('test');
@@ -236,6 +240,7 @@ class TestsController extends Controller
                     'points_gained' => $all_points_gained,
                     'points' => $all_points,
                     'testForm' => $testForm,
+                    'test' => $test
                 ]);
 
             } catch (Exception $e) {

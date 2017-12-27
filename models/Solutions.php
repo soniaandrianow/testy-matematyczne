@@ -76,4 +76,9 @@ class Solutions extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Tests::className(), ['TestId' => 'TestId']);
     }
+
+    public function isCorrect()
+    {
+        return $this->PointsGained > 0;
+    }
 }

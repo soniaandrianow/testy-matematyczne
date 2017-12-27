@@ -10,11 +10,11 @@ use yii\bootstrap\ActiveForm;
 $this->title = Yii::t('app' ,'Zaloguj się');
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-6 col-md-offset-1">
+<div class="col-md-8 col-md-offset-1">
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="panel-title">
-            <h2><?=$this->title?></h2>
+            <h3><?=$this->title?></h3>
         </div>
     </div>
     <div class="panel-body" style="text-align: center">
@@ -27,10 +27,10 @@ $this->title = Yii::t('app' ,'Zaloguj się');
 
         <?= $form->field($model, 'password')->passwordInput() ?>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([]) ?>
+        <?= $form->field($model, 'rememberMe')->checkbox([])->label(Yii::t('app','Zapamiętaj mnie'))?>
 
         <div class="form-group" style="padding-left: 5px; padding-right: 5px;">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Zaloguj się', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
             <br>
             <span class="pull-left"><?= Html::a(Yii::t('app', 'Zapomniałeś hasła?'), ['site/reset-password']) ?></span>
             <span class="pull-right"><?= Html::a(Yii::t('app', 'Zarejestruj się'), ['site/signup'])?></span>

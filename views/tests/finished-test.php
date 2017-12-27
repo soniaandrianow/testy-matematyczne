@@ -28,6 +28,6 @@ use yii\helpers\Html;
             </div>
         <?php endif; ?>
 
-        <?=Html::a(Yii::t('app', 'Zobacz odpowiedzi'), ['results/index'], ['class' => 'btn btn-default']);?>
+        <?=Html::a(Yii::t('app', 'Zobacz odpowiedzi'), ['view-test/display', 'id' => $test->TestId], ['class' => 'btn btn-default']);?>
     </div>
 </div>

@@ -178,6 +178,62 @@ hr {
     text-align: center;
 }
 
-div[role=tablist] {
+h5 {
+    font-size: larger;
+}
 
+.answer-id {
+    cursor: pointer;
+
+}
+
+.green {
+    color: green !important;
+}
+.green:hover{
+    text-decoration: none !important;
+}
+
+.red {
+    color: red !important;
+}
+.red:hover{
+    text-decoration: none !important;
+}
+
+.btn-answer-green {
+    background-color: #00aa00;
+    color: black;
+    display:inline-block;
+    border:1px solid #CCC;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    vertical-align:middle;
+    padding: 5px;
+    text-align: center;
+}
+
+.btn-answer-red {
+    background-color: #9d261d;
+    color: black;
+    display:inline-block;
+    border:1px solid #CCC;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    vertical-align:middle;
+    padding: 5px;
+    text-align: center;
+}
+
+.btn-answer-clear {
+    background-color: lightgrey;
+    color: black;
+    display:inline-block;
+    border:1px solid #CCC;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    vertical-align:middle;
+    padding: 5px;
+    text-align: center;
+}
+
+#panel-question-preview {
+    font-size: 150%;
 }
