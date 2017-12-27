@@ -169,3 +169,15 @@ hr {
     color: darkblue;
     font-size: 300%;
 }
+
+.info-label {
+    color: #2d6987;
+}
+
+.center {
+    text-align: center;
+}
+
+div[role=tablist] {
+
+}

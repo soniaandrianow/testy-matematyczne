@@ -21,22 +21,58 @@ use yii\db\Connection;
 use yii\db\Exception;
 use yii\db\Expression;
 use yii\db\Transaction;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use Yii;
 
 class TestsController extends Controller
 {
 
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create-test', 'run-test', 'first-question', 'previous-question', 'next-question', 'answer-question', 'cancel', 'finish-test'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
+        ];
+    }
+
     public function actionDifficulty($id)
     {
         $tasks = array_column(Tasks::find()->where(['DifficultyId' => $id])->select('TaskId')->asArray()->all(), 'TaskId');
 
+        $mainCat = array_column(Categories::find()->where(['CategoryId' => $tasks])->select('MainCategory')->distinct()->asArray()->all(), 'MainCategory');
+
         $categories = Categories::find()->where(['CategoryId' => $tasks])->all();
 
-        return $this->renderAjax('_categories', [
+        $html = $this->renderPartial('_categories', [
             'categories' => $categories,
-            'difficulty' => $id
+            'difficulty' => $id,
+            'main_cat' => $mainCat,
         ]);
+        return \yii\helpers\Json::encode($html);
+
+//        return $this->renderAjax('_categories', [
+//            'categories' => $categories,
+//            'difficulty' => $id,
+//            'main_cat' => $mainCat,
+//        ]);
     }
 
     public function actionCreateTest($difficulty_id, $category_id)
@@ -135,13 +171,6 @@ class TestsController extends Controller
     {
         $session = Yii::$app->session;
         $qi = $session->get('question_id');
-        $task = $session->get('testForm')->tasks[$qi]->TaskId;
-        $ya = $session->get('your_answers');
-        $ya[Yii::$app->session['question_id']] = [
-            'task' => $task,
-            'answer' => null,
-        ];
-        $session->set('your_answers', $ya);
         $qi--;
         $session->set('question_id', $qi);
 
@@ -152,12 +181,6 @@ class TestsController extends Controller
     {
         $session = Yii::$app->session;
         $qi = $session->get('question_id');
-        $task = $session->get('testForm')->tasks[$qi]->TaskId;
-        $ya = $session->get('your_answers');
-        $ya[Yii::$app->session['question_id']] = [
-            'task' => $task,
-            'answer' => null,
-        ];
         $qi++;
         $session->set('question_id', $qi);
 

@@ -15,7 +15,7 @@ $this->title = Yii::t('app', 'Rozpocznij test');
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="panel-title">
-            <p><?= $difficulty->Name. ' - ' . $category->Name ?></p>
+            <h3><?= $difficulty->Name. ' - ' . $category->Name ?></h3>
         </div>
     </div>
     <div class="panel-body">

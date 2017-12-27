@@ -6,6 +6,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('app', 'Dodaj dziecko');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profil'), 'url' => ['profile/index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="panel panel-default">
@@ -21,7 +23,7 @@ $this->title = Yii::t('app', 'Dodaj dziecko');
             <?=$form->field($kid, 'DateOfBirth')->widget(DatePicker::className(), [
                     'pluginOptions' => [
                         'autoclose'=>true,
-                        'format' => 'yyyy-m-d'
+                        'format' => 'yyyy-mm-dd'
                      ]
         ]);?>
         <?= Html::submitButton(Yii::t('app', 'Zapisz'), ['class' => 'btn btn-primary btn-block', 'name' => 'add-kid']) ?>

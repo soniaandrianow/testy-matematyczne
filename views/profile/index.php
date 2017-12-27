@@ -5,6 +5,8 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Profil');
 /* @var $this yii\web\View */
+
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="panel panel-default">
@@ -52,7 +54,23 @@ $this->title = Yii::t('app', 'Profil');
                             return date('Y', strtotime('now')) - date('Y', strtotime($data->DateOfBirth));
                         }
                     ],
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                            'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {update} {delete}',
+                        'urlCreator' => function ($action, $model, $key, $index) {
+                            if ($action === 'view') {
+                                $url = Url::to(['children/view', 'id' => $model->ChildId]);
+                                return $url;
+                            }if ($action === 'update') {
+                                $url = Url::to(['children/update', 'id' => $model->ChildId]);
+                                return $url;
+                            }
+                            if ($action === 'delete') {
+                                $url = Url::to(['children/delete', 'id' => $model->ChildId]);
+                                return $url;
+                            }
+                        }
+                    ],
 
                 ]
             ]); ?>

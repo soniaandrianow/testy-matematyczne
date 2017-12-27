@@ -110,13 +110,20 @@ AppAsset::register($this);
 
     <div class="container">
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <?= $this->render('_side-nav.php') ?>
         </div>
-        <div class="col-md-9 col-md-offset-1">
+        <div class="col-md-9">
             <div class="row">
                 <div>
                     <?= Alert::widget(); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]);?>
                 </div>
             </div>
             <div class="row">

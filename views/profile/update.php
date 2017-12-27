@@ -4,7 +4,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = Yii::t('app', 'Aktualizuj profilu');
+$this->title = Yii::t('app', 'Aktualizuj profil');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profil'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 

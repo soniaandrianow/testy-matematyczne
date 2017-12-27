@@ -31,13 +31,18 @@ $this->registerJS($js, \yii\web\View::POS_BEGIN);
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="panel-title">
-            <p><?= Yii::t('app', 'Wybierz test') ?></p>
+            <h3><?= Yii::t('app', 'Wybierz test') ?></h3>
         </div>
     </div>
     <div class="panel-body">
+        <h5 class="center info-label"><?=Yii::t('app', 'Wybierz poziom trudności testu')?></h5>
+        <div class="row">
         <?php foreach ($difficulties as $diff) : ?>
-            <?=Html::a($diff->Name, null, ['class' => 'btn btn-primary btn-diff', 'id' => 'diff' . $diff->DifficultyId, 'data' => $diff->DifficultyId, 'onclick'=>'reload(this);']);?>
-        <?php endforeach;?>
+            <div class="col-md-3">
+                <?= Html::a($diff->Name, null, ['class' => 'btn btn-primary btn-diff btn-block', 'id' => 'diff' . $diff->DifficultyId, 'data' => $diff->DifficultyId, 'onclick' => 'reload(this);']); ?>
+            </div>
+        <?php endforeach; ?>
+            </div>
 
         <div id="results" style="margin-top: 10px">
 

@@ -68,16 +68,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $difficulties = Difficulties::find()->all();
-//        $id = 1;
-//        $tasks = array_column(Tasks::find()->where(['DifficultyId' => $id])->select('TaskId')->asArray()->all(), 'TaskId');
-//        var_dump($tasks); die;
-//        $categories = Categories::find()->where(['CategoryId' => $tasks])->all();
-//        var_dump($categories); die;
-//        $kids = ArrayHelper::map(Children::find()->where(['ParentId' => Yii::$app->user->id])->all(), 'ChildId', 'FirstName');
-//        var_dump($kids);
-//        die;
 
-        return $this->render('index', [
+        return $this->render('index2', [
             'difficulties' => $difficulties,
         ]);
     }

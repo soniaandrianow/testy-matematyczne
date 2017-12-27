@@ -23,7 +23,8 @@
         "kartik-v/yii2-widget-sidenav": "*",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "kartik-v/yii2-tabs-x": "@dev"
 
     },
     "require-dev": {

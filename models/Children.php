@@ -78,8 +78,14 @@ class Children extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
-        $this->DateOfBirth = $this->DateOfBirth . ' ' . '00:00';
+        $this->DateOfBirth = $this->DateOfBirth . ' ' . '00:00:00';
         return parent::beforeSave($insert);
+    }
+
+
+    public function getFormattedDate()
+    {
+        return date('d-m-Y', strtotime($this->DateOfBirth));
     }
 
 }
