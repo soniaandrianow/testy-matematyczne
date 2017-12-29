@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use borales\extensions\phoneInput\PhoneInputValidator;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -37,9 +38,10 @@ class Parents extends \yii\db\ActiveRecord implements IdentityInterface
             [['FirstName', 'LastName', 'EmailAddress', 'Password', 'DateOfRegistration'], 'required'],
             [['DateOfRegistration'], 'safe'],
             [['FirstName', 'LastName', 'Password'], 'string', 'max' => 50],
-            [['PhoneNumber'], 'string', 'max' => 12],
+            [['PhoneNumber'], 'string', 'max' => 16],
             [['EmailAddress'], 'string', 'max' => 125],
             [['EmailAddress'], 'unique'],
+            [['PhoneNumber'], PhoneInputValidator::className()],
         ];
     }
 
@@ -146,6 +148,15 @@ class Parents extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findByEmail($email)
     {
         return Parents::findOne(['EmailAddress' => $email]);
+    }
+
+    /**
+     * Starts password resetting process.
+     * @return boolean
+     */
+    public function requestReset()
+    {
+        return true;
     }
 
 }

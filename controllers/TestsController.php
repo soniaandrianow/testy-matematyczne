@@ -77,6 +77,7 @@ class TestsController extends Controller
 
     public function actionCreateTest($difficulty_id, $category_id)
     {
+        date_default_timezone_set('Europe/Warsaw');
         $testForm = new TestForm();
 
         $tasks = Tasks::find()->where(['CategoryId' => $category_id])->andWhere(['DifficultyId' => $difficulty_id])->orderBy(new Expression('rand()'))->limit(Yii::$app->params['max_questions'])->all();
@@ -84,7 +85,7 @@ class TestsController extends Controller
         $category = Categories::findOne($category_id);
         $difficulty = Difficulties::findOne($difficulty_id);
 
-        $kids = ArrayHelper::map(Children::find()->where(['ParentId' => Yii::$app->user->id])->all(), 'ChildId', 'FirstName');
+        $kids = ArrayHelper::map(Children::find()->where(['ParentId' => Yii::$app->user->id])->all(), 'ChildId', 'fullName');
 
         $testForm->tasks = $tasks;
         $testForm->category = $category;

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Categories;
 use app\models\Children;
+use app\models\forms\PasswordResetForm;
 use app\models\forms\SignupForm;
 use app\models\Tasks;
 use Yii;
@@ -147,4 +148,27 @@ class SiteController extends Controller
         }
         return $this->render('signup', ['model' => $model]);
     }
+
+    /**
+     * Requests password reset.
+     *
+     * @return mixed
+     */
+    public function actionRequestPasswordReset()
+    {
+        $model = new PasswordResetForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                $this->ok(Yii::t('app', 'Dalsze instrukcje zostały wysłane na podany adres email.'));
+                return $this->goHome();
+            } else {
+                $this->err(Yii::t('app', 'Niestety nie możemy zresetować hasła dla podanego adresu email.'));
+            }
+        }
+        return $this->render('request-password-reset', [
+            'model' => $model,
+        ]);
+    }
 }
+

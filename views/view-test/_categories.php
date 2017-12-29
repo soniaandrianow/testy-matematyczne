@@ -9,7 +9,12 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$js = <<<JS
+$("a").removeClass('selected');
+        
+JS;
 
+$this->registerJS($js);
 
 ?>
 

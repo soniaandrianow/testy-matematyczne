@@ -10,6 +10,7 @@ namespace app\models\forms;
 
 
 use app\models\Parents;
+use borales\extensions\phoneInput\PhoneInputValidator;
 use Yii;
 use yii\base\Model;
 
@@ -33,13 +34,14 @@ class SignupForm extends Model
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => 'app\models\Parents', 'targetAttribute' => 'EmailAddress', 'message' => Yii::t('app', 'Email jest już zajęty.')],
             [['password', 'password_repeat'], 'required', 'message' => Yii::t('app', 'Hasło nie może pozostać puste.')],
-            ['password', 'string', 'min' => 6],
             [['password'], 'checkPassword'],
+            ['password', 'string', 'min' => 8],
             [['password_repeat'], 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('app', 'Hasła muszą byc takie same.')],
             [['firstname', 'lastname', 'email', 'password'], 'required'],
             //[['DateOfRegistration'], 'safe'],
             [['firstname', 'lastname', 'password'], 'string', 'max' => 50],
-            [['phone_number'], 'string', 'max' => 12],
+            [['phone_number'], 'string', 'max' => 16],
+            [['phone_number'], PhoneInputValidator::className(), 'message' => Yii::t('app', 'Niepoprawny format numeru telefonu.')],
 
         ];
     }

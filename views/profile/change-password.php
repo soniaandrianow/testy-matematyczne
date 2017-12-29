@@ -10,6 +10,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('app', 'Zmień hasło');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profil'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 

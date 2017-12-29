@@ -52,6 +52,7 @@ class Children extends \yii\db\ActiveRecord
             'DateOfBirth' => Yii::t('app', 'Data urodzenia'),
             'ParentId' => Yii::t('app', 'Parent ID'),
             'fullname' => Yii::t('app', 'Imię i nazwisko'),
+            'pointsSummary' => Yii::t('app', 'Poprawne rozwiązania'),
         ];
     }
 
@@ -86,6 +87,27 @@ class Children extends \yii\db\ActiveRecord
     public function getFormattedDate()
     {
         return date('d-m-Y', strtotime($this->DateOfBirth));
+    }
+
+    public function getPointsSummary()
+    {
+        $tests = Tests::findAll(['ChildId' => $this->ChildId]);
+        $solutions = Solutions::findAll(['TestId' => $tests]);
+        $maxPoints = 0;
+        $gainedPoints = 0;
+         foreach($tests as $test) {
+             $maxPoints += $test->MaximumPoints;
+         }
+
+         foreach($solutions as $solution){
+             $gainedPoints += $solution->PointsGained;
+         }
+
+         if($maxPoints) {
+             return round($gainedPoints / $maxPoints * 100, 2) . '%';
+         } else {
+             return '0%';
+         }
     }
 
 }

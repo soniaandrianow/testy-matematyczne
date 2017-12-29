@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 
+use borales\extensions\phoneInput\PhoneInput;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -20,7 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin([])?>
         <?=$form->field($model, 'FirstName')->textInput();?>
         <?=$form->field($model, 'LastName')->textInput();?>
-        <?=$form->field($model, 'PhoneNumber')->textInput();?>
+        <?=$form->field($model, 'PhoneNumber')->widget(PhoneInput::className(), [
+            'options' => ['class' => 'form-control'],
+            'jsOptions' => [
+                'preferredCountries' => ['pl'],
+                'nationalMode' => false
+            ],
+        ])->label(Yii::t('app', 'Telefon'), ['style' => 'display:inherit;']);?>
         <?=$form->field($model, 'EmailAddress')->textInput();?>
         <?= Html::submitButton(Yii::t('app', 'Zapisz'), ['class' => 'btn btn-primary btn-block', 'name' => 'add-kid']) ?>
         <?php $form::end()?>

@@ -54,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return date('Y', strtotime('now')) - date('Y', strtotime($data->DateOfBirth));
                         }
                     ],
+                    'pointsSummary',
                     [
                             'class' => 'yii\grid\ActionColumn',
                         'template' => '{view} {update} {delete}',

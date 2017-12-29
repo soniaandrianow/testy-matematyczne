@@ -16,6 +16,7 @@ use yii\helpers\Html;
     <?php
     $percents = 100 / Yii::$app->params['max_questions'];
     ?>
+    <span class="progress-label"><?=Yii::$app->session['question_id']+1 . '/' . Yii::$app->params['max_questions']?></span>
     <?= Progress::widget([
         'percent' => (Yii::$app->session['question_id'] + 1) * $percents,
         'barOptions' => ['class' => 'progress-bar-success'],
@@ -48,12 +49,12 @@ use yii\helpers\Html;
             //var_dump($answers); die;
             ?>
             <div class="answers">
-
+    <?php $chosen = Yii::$app->session->get('your_answers')[Yii::$app->session['question_id']]['answer'];?>
                 <?php for ($i = 0; $i < $row; $i++) : ?>
                     <div class="row" style="margin-top: 10px;">
                         <?php for ($j = 0; $j < $col; $j++): ?>
                             <div class="col-md-6">
-                                <?= Html::a($answers[$answ]->Content, null, ['class' => 'btn btn-primary answer btn-block', 'id' => $answers[$answ]->AnswerId, 'onclick' => 'answer(this)']) ?>
+                                <?= Html::a($answers[$answ]->Content, null, ['class' => 'btn btn-primary answer btn-block ', 'id' => $answers[$answ]->AnswerId, 'onclick' => 'answer(this)', 'role' => $answers[$answ]->AnswerId == $chosen ? 'chosen' : ' ']) ?>
                                 <?php $answ++; ?>
                             </div>
                         <?php endfor; ?>
@@ -66,10 +67,10 @@ use yii\helpers\Html;
 
     <div class="row">
         <div class="col-md-2 col-md-offset-4">
-            <?= Yii::$app->session['question_id'] == '0' ? '' : Html::a('<i class="fa fa-4x fa-arrow-left" aria-hidden="true"></i>', null, ['id' => 'left-arrow', 'title' => 'Poprzednie pytanie', 'onclick' => 'previous()']); ?>
+            <?= Yii::$app->session['question_id'] == '0' ? '' : Html::a('<i class="fa fa-4x fa-arrow-left" aria-hidden="true"></i>', null, ['class' => 'nav-arrow', 'id' => 'left-arrow', 'title' => 'Poprzednie pytanie', 'onclick' => 'previous()']); ?>
         </div>
         <div class="col-md-2">
-            <?= Yii::$app->session['question_id'] == (Yii::$app->params['max_questions'] - 1) ? '' : Html::a('<i class="fa fa-4x fa-arrow-right" aria-hidden="true"></i>', null, ['id' => 'right-arrow', 'title' => 'Kolejne pytanie', 'onclick' => 'next()']); ?>
+            <?= Yii::$app->session['question_id'] == (Yii::$app->params['max_questions'] - 1) ? '' : Html::a('<i class="fa fa-4x fa-arrow-right" aria-hidden="true"></i>', null, ['class' => 'nav-arrow', 'id' => 'right-arrow', 'title' => 'Kolejne pytanie', 'onclick' => 'next()']); ?>
         </div>
     </div>
 

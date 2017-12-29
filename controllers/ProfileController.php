@@ -34,11 +34,11 @@ class ProfileController extends Controller
         $parent = Parents::findOne(['ParentId' => $id]);
         if($parent->load(Yii::$app->request->post())) {
             if($parent->save()) {
-                $this->ok('Pomyślnie zaktualizowano profil.');
-                $this->redirect(['profile/index']);
+                $this->ok('Pomyślnie zaktualizowano dane profilowe.');
+                return $this->redirect(['profile/index']);
             }
             $this->err('Wystąpił niespodziewany błąd podczas aktualizacji danych. Spróbuj ponownie póżniej.');
-            $this->redirect(['profile/index']);
+            return $this->redirect(['profile/index']);
         }
         return $this->render('update', [
             'model' => $parent
@@ -55,10 +55,10 @@ class ProfileController extends Controller
                 $parent->Password = $form->new_password;
                 if($parent->save()) {
                     $this->ok('Hasło zostało pomyślnie zaktualizowane.');
-                    $this->redirect(['profile/index']);
+                    return $this->redirect(['profile/index']);
                 }
                 $this->err('Wystąpił niespodziewany błąd podczas zmiany hasła. Spróbuj ponownie póżniej.');
-                $this->redirect(['profile/index']);
+                return $this->redirect(['profile/index']);
             }
         }
         return $this->render('change-password', [

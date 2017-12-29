@@ -21,6 +21,7 @@ class PasswordForm extends Parents
        return [
            [['password'], 'required'],
            [['password'], 'validatePasswordToEdit'],
+           ['new_password', 'string', 'min' => 8],
            [['new_password'], 'validateNewPassword'],
            [['new_password_repeat'], 'compare', 'compareAttribute' => 'new_password', 'message'=>Yii::t('app', 'Powtórzenie hasła musi byc takie samo jak hasło.')],
         ];

@@ -14,7 +14,7 @@ use yii\helpers\Url;
 <?php if($categories) : ?>
 <div class="panel panel-primary">
     <div class="panel-body">
-        <h5 class="info-label"><?php//=Yii::t('app', 'Wybierz kategorię testu')?></h5>
+        <h5 class="center info-label"><?= Yii::t('app', 'Wybierz kategorię testu') ?></h5>
         <?php foreach($main_cat as $main) : ?>
             <h4><?=$main?></h4>
         <ul>

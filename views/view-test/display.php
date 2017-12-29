@@ -71,14 +71,14 @@ $this->registerJs($js, \yii\web\View::POS_BEGIN);
                                 <div class="row">
                                     <a style="cursor: pointer" id="<?= $solution->TaskId ?>"
                                        data="<?= $solution->TestId ?>" number="<?= $i ?>"
-                                       chosen="<?= $solution->answer->AnswerId ?> " onclick="loadAnswer(this)">
+                                       chosen="<?= $solution->answer ? $solution->answer->AnswerId : ' - '?> " onclick="loadAnswer(this)">
 
 
                                         <div class="col-md-4">
                                             <p><?= Yii::t('app', 'Zadanie ') . $i . '.' ?></p>
                                         </div>
                                         <div class="col-md-4">
-                                            <p class="<?= $solution->isCorrect() ? 'green' : 'red' ?>"><?= $solution->answer->Content ?></p>
+                                            <p class="<?= $solution->isCorrect() ? 'green' : 'red' ?>"><?= $solution->answer ? $solution->answer->Content : ' - '?></p>
                                         </div>
                                     </a>
                                 </div>

@@ -32,7 +32,7 @@ $this->title = Yii::t('app' ,'Zaloguj się');
         <div class="form-group" style="padding-left: 5px; padding-right: 5px;">
                 <?= Html::submitButton('Zaloguj się', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
             <br>
-            <span class="pull-left"><?= Html::a(Yii::t('app', 'Zapomniałeś hasła?'), ['site/reset-password']) ?></span>
+            <span class="pull-left"><?= Html::a(Yii::t('app', 'Zapomniałeś hasła?'), ['site/request-password-reset']) ?></span>
             <span class="pull-right"><?= Html::a(Yii::t('app', 'Zarejestruj się'), ['site/signup'])?></span>
         </div>
 

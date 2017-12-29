@@ -34,6 +34,7 @@ $this->registerJS($js);
         </div>
     </div>
     <div class="panel-body">
+        <h5 class="center info-label"><?= Yii::t('app', 'Wybierz poziom trudności testu') ?></h5>
         <div class="row">
             <?php
             $items = [];

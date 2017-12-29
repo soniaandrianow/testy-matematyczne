@@ -11,6 +11,7 @@ $this->title = Yii::t('app', 'Przeglądaj rozwiązane testy');
 
 $js = <<<JS
 $('#tabs-diff').addClass('nav-pills');
+$("a").removeClass('selected');
 $("document").ready(function() {
 setTimeout(function() {
 $(".tabs-krajee").find("li.active a").click();
@@ -25,6 +26,8 @@ $js2 = <<<JS
         
   var reload = function(elem) {
         console.log($(elem).attr("id"));
+        $("a").removeClass('selected');
+        $(elem).addClass('selected');
         $.get(
             "$urlSearchResult",
             {
